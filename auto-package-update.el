@@ -272,7 +272,8 @@
 (defun apu--delete-old-versions-dirs-list ()
   "Delete package old version dirs saved in variable apu--old-versions-dirs-list"
   (dolist (old-version-dir-to-delete apu--old-versions-dirs-list)
-    (delete-directory old-version-dir-to-delete t))
+    ;; (delete-directory old-version-dir-to-delete t)
+    )
   ;; Clear list
   (setq apu--old-versions-dirs-list ()))
 
@@ -281,7 +282,7 @@
       (progn
         (when auto-package-update-delete-old-versions
           (apu--add-to-old-versions-dirs-list package))
-        (package-install-from-archive (cadr (assoc package package-archive-contents)))
+        ;; (package-install-from-archive (cadr (assoc package package-archive-contents)))
         (add-to-list 'apu--package-installation-results
                      (format "%s up to date." (symbol-name package))))
     ('error (add-to-list 'apu--package-installation-results
@@ -321,14 +322,19 @@
 
   (package-refresh-contents)
 
-  (let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
-    (apu--write-current-day)
-    (apu--write-results-buffer
-     (mapconcat #'identity
-                (cons "[PACKAGES UPDATED]:" installation-report)
-                "\n")))
+  ;; (let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
+    ;; (apu--write-current-day)
+    ;;    (apu--write-results-buffer
+    ;; (mapconcat #'identity
+    ;;            (cons "[PACKAGES UPDATED]:" installation-report)
+    ;;            "\n")
 
-  (run-hooks 'auto-package-update-after-hook))
+    ;; )
+  (let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
+  )
+)
+
+  ;; (run-hooks 'auto-package-update-after-hook)
 
 ;;;###autoload
 (defun auto-package-update-at-time (time)
