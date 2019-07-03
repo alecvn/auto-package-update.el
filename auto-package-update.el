@@ -284,7 +284,7 @@
           (apu--add-to-old-versions-dirs-list package))
         ;; (package-install-from-archive (cadr (assoc package package-archive-contents)))
         (add-to-list 'apu--package-installation-results
-                     (format "%s up to date." (symbol-name package))))
+                     (format "%s" (symbol-name package))))
     ('error (add-to-list 'apu--package-installation-results
                          (format "Error installing %s" (symbol-name package))))))
 
@@ -330,8 +330,9 @@
     ;;            "\n")
 
     ;; )
-  (let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
-  )
+  ;;(let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
+    (apu--safe-install-packages (apu--packages-to-install))
+  ;;)
 )
 
   ;; (run-hooks 'auto-package-update-after-hook)
