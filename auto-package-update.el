@@ -319,8 +319,7 @@
   "Update installed Emacs packages."
   (interactive)
   (run-hooks 'auto-package-update-before-hook)
-
-  (package-refresh-contents)
+  ;; (package-refresh-contents)
 
   ;; (let ((installation-report (apu--safe-install-packages (apu--packages-to-install))))
     ;; (apu--write-current-day)
